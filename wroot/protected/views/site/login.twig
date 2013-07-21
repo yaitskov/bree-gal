@@ -1,0 +1,19 @@
+{% extends "views/layouts/main.twig" %}
+{% import "macro/forms.twig" as f %}
+
+{% block content %}
+<div class="row top-buffer">
+  <form id="login-form" class="form-horizontal" method="POST">
+    {{ f.errors(model) }}
+    {{ f.txt(model, 'username', 'Login') }}
+    {{ f.pass(model, 'password') }}
+    <div class="control-group">
+      <div class="controls">
+        <button type="submit" class="btn btn-info">{{ 'Sign in'|t }}</button>
+      </div>
+    </div>
+  </form>
+</div>
+
+{% endblock content %}
+

@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<!--[if lt IE 7 ]><html class="ie ie6" lang="en"> <![endif]-->
+<!--[if IE 7 ]><html class="ie ie7" lang="en"> <![endif]-->
+<!--[if IE 8 ]><html class="ie ie8" lang="en"> <![endif]-->
+<!--[if (gte IE 9)|!(IE)]><!-->
+<html xmlns="http://www.w3.org/1999/xhtml"
+      {% block xmlns %}{% endblock %}
+      xml:lang="en" lang="en"> <!--<![endif]-->
+<head>
+  <meta charset="utf-8" />
+  <title>{% block title %}{{ this.pageTitle }}{% endblock %}</title>
+  <meta name="description" content="Балабай Ира портфолио дизайнер photoshop adobe illustrator">
+  <meta name="author" content="Daneel Yaitskov">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <!--[if lt IE 9]>
+  <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+<![endif]-->
+  <link rel="stylesheet" href="/css/bootstrap.css">
+  <link rel="stylesheet" href="/css/form.css">
+  <link rel="stylesheet" href="/css/font-awesome.css">
+  <link rel="stylesheet" href="/css/site.css">
+  {% block subcss %}{% endblock %}
+  <!--[if IE 7]>
+  <link rel="stylesheet" href="css/font-awesome-ie7.min.css">
+  <![endif]-->
+  <!-- Le fav and touch icons -->
+  <link rel="shortcut icon" href="/ico/favicon.ico">
+  <script type="text/javascript" src="/js/jquery.js"></script>
+  <script type="text/javascript" src="/js/jquery.cookie.js"></script>
+  <script type="text/javascript" src="/js/bootstrap.js"></script>
+  <script type="text/javascript" src="/js/bootstrap-ajax.js"></script>
+  <script type="text/javascript" src="/js/app.js"></script>
+  {% block subjs %}{% endblock %}
+  <script type="text/javascript">
+  </script>
+</head>
+<body>
+  <div class="navbar depo-status">
+    <div class="navbar-inner">
+      <ul class="nav pull-right">
+        {% if App.user.isGuest %}
+        <li>
+            <a href="/site/login">
+              <i class="icon-signin"></i>Login
+            </a>
+        </li>
+        {% else %}
+        <li>
+            <a href="/site/logout">
+              <i class="icon-signout"></i>Logout
+            </a>
+        </li>
+        <li>
+            <a href="/site/changePassword">
+              <i class="icon-adjust"></i>Change password
+            </a>
+        </li>
+        <li>
+            <a href="/gallery/create">
+              <i class="icon-plus"></i>Create gallery
+            </a>
+        </li>
+        {% endif %}
+        {% block submenu %}{% endblock %}
+      </ul>
+    </div>
+  </div>
+<div class="container">
+  {% block content %}{% endblock %}
+  <div class="clear"></div>
+</div>
+<div id="errbox"/>
+</body>
+</html>

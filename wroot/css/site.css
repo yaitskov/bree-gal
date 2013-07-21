@@ -1,0 +1,285 @@
+#mbookmarks {
+    position: fixed;
+    right: 5px;
+    top: 48px;
+}
+#mbookmarks a i {
+    line-height: 42px;
+}
+
+.top-buffer { margin-top:20px; }
+.top-buffer-2x { margin-top:40px; }
+
+.depo-status .user-name {
+    line-height: 36px;
+    padding-right: 20px;
+    cursor: pointer;
+}
+
+.depo-status .user-icon {
+    line-height: 33px;
+    padding: 0px 10px;
+}
+
+.depo-status .user-icon img {
+    width: 30px;
+    heigth: 30px;
+    border: 0px solid black;
+    border-radius: 10px;
+    -moz-border-radius: 10px;
+    -khtml-border-radius: 10px;
+    -webkit-border-radius: 10px;
+}
+
+.depo-status .lang {
+    padding: 4px 10px;
+    line-height: 18px;
+}
+
+.depo-status .navbar-inner {
+    padding-right: 5px;
+}
+
+.prj-galery .thumbnail {
+    text-align: center;
+}
+
+.prj-galery .thumbnail i {
+    color: black;
+    padding: 24px 0px;
+}
+
+body > .container {
+    width: 780px;
+}
+
+@media (max-width: 1000px) {
+    body > .container {
+        width: 480px;
+    }
+}
+
+@media (max-width: 580px) {
+    body > .container {
+        width: 450px;
+    }
+}
+
+@media (max-width: 380px) {
+    body > .container {
+        width: 200px;
+    }
+}
+
+.thumbnail > a > img {
+    display: block;
+    max-width: 100%;
+}
+
+.photo-group .photo > div {
+    width: 100px;
+    height: 100px;
+    max-height: 100px;
+    overflow: hidden;
+    display: table-cell;
+    vertical-align: middle;
+    padding-top: 5px;
+}
+
+.photo-group .photo {
+    position: relative;
+    display: inline-block;
+}
+
+.photo-group .label {
+  position: absolute;
+  bottom: 10px;
+  right: 10px;
+  float: right;
+}
+
+.thumbnail:hover {
+    border-color: black;
+}
+
+.form-horizontal {
+    width: 550px;
+    margin: 0px auto;
+}
+
+.form-horizontal input[type=text], .form-horizontal input[type=password],
+.form-horizontal textarea {
+    width: 356px;
+}
+
+.form-horizontal textarea {
+    max-width: 356px;
+    min-width: 356px;
+}
+
+.container h2 {
+    text-align: center;
+}
+
+form.requireable .required label {
+    font-weight: bold;
+}
+
+form.requireable .required label:after {
+    color: #e32;
+    content: '*';
+    display:inline;
+}
+
+
+.borderless th, .borderless td {
+    border-top: none;
+}
+
+#comments textarea, .form-horizontal textarea {
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    -ms-box-sizing: border-box;
+    box-sizing: border-box;
+    width: 100%;
+    max-width: 100%;
+    min-width: 100%;
+    font-size: 16px;
+    line-height: 20px;
+    font-family: helvetica;
+}
+
+.comment img {
+    position: absolute;
+    width: 50px;
+    height: 50px;
+}
+
+.comment {
+    margin-bottom: 5px;
+    margin-top: 15px;
+    overflow: hidden;
+    position: relative;
+}
+
+.comment .icon-remove {
+    padding-left: 4px;
+    vertical-align: top;
+}
+
+.comment .remove:hover {
+    text-decoration: none;
+}
+
+.comment .body {
+    margin-left: 62px;
+    min-height: 56px;
+}
+
+.comment .title {
+    padding-left: 20px;
+}
+
+.comment .title {
+    border-bottom: 1px solid #eeeeee;
+    color: #999;
+}
+
+.comment .content {
+    padding: 11px;
+}
+
+#errbox {
+    right: 80px;
+    position: fixed;
+    top: 60px;
+    z-index: 100;
+    width: 400px;
+}
+
+.errmsg, .questionbox {
+    background-color: #EFFDFF;
+    border: 2px solid #298DCD;
+    border-radius: 10px 10px 10px 10px;
+    color: red;
+    margin-bottom: 4px;
+    cursor: pointer;
+    font-size: 13pt;
+    padding: 11px;
+}
+
+
+*:focus {
+    outline: none !important;
+}
+
+#mbookmarks a, #mbookmarks a:hover, #mbookmarks a:active, #mbookmarks a:focus {
+   outline: none !important;
+}
+
+
+.tab-content {
+    overflow: visible;
+}
+
+#file-list td:first-child {
+    padding: 0px;
+    text-align: center;
+    vertical-align: middle;
+}
+
+#file-list td:first-child img {
+    width: 28px;
+}
+
+
+.table.vert td {
+    vertical-align: middle;
+}
+
+.table td > form {
+    margin: 0px;
+}
+
+#galleries-list {
+    font-size: 15pt;
+    list-style: none;
+}
+
+#photo-view .big-image {
+    max-width: 800px;
+    /*max-height: 800px;*/
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    margin: auto;
+}
+
+#photo-view .modal-body {
+    max-height: 510px;
+    padding: 0px;
+}
+
+#photo-view {
+    top: 5%;
+    width: 1000px;
+    margin-left: -500px;
+}
+
+.comments-and-form {
+    float: right;
+}
+
+.comments-and-form textarea {
+    max-height: 120px;
+}
+.comments-and-form .comment, .comments-and-form textarea {
+   width: 166px;
+   max-width: 166px;
+}
+
+.create-comment button {
+    display: block;
+}

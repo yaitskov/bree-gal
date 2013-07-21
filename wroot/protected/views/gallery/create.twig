@@ -1,0 +1,14 @@
+{% extends "views/layouts/main.twig" %}
+{% import "macro/forms.twig" as f %}
+
+{% block title %}Новая галлеря{% endblock %}
+{% block content %}
+<h2>Новая галлерея</h2>
+<div class="row">
+  <form class="form-horizontal requireable" method="POST">
+    {{ f.errors(model) }}
+    {{ f.txt(model, 'name') }}
+    {{ f.submit('Создать') }}
+  </form>
+</div>
+{% endblock %}

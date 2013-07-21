@@ -1,0 +1,35 @@
+{% extends "views/layouts/main.twig" %}
+
+{% block content %}
+<h2>Список галерей</h2>
+{% if galleries %}
+<ul id="galleries-list">
+  {% for gallery in galleries %}
+  <li>
+      <a href="{{ gallery.url }}">
+        <div style="padding: 5px;">
+          {{ gallery.name }}
+        </div>
+        <ul class="thumbnails prj-galery">
+          {% for photo in gallery.galleryIcons %}
+          <li class="span2">
+            <div class="photo-group thumbnail">
+                <div class="photo">
+                  <div>
+                    <img src="{{ photo.iconUrl }}" alt="icon" />
+                  </div>
+                </div>
+            </div>
+          </li>
+          {% endfor %}
+        </ul>
+      </a>
+  </li>
+  {% endfor %}
+</ul>
+{% else %}
+<div class="alert alert-info">
+  Нет ни одной галереи.
+</div>
+{% endif %}
+{% endblock %}

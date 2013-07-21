@@ -1,0 +1,9 @@
+/*.pem
+wroot/files/*
+000_*
+*.pub
+*.tar
+*.gz
+.#*
+wroot/assets/*
+wroot/protected/runtime/*

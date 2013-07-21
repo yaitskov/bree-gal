@@ -1,0 +1,25 @@
+<div style="float: left; width: 800px; height: 510px; position: relative;">
+  <img class="big-image" src="{{ photo.imageUrl }}" />
+</div>
+<div class="comments-and-form">
+  <div id="comments">
+    {% for comment in photo.comments %}
+    {% include "views/comment/view.twig" %}
+    {% endfor %}
+  </div>
+  {% if App.user.isGuest %}
+  {% else %}
+  <div>
+    <form class="create-comment" action="/comment/create">
+      <div class="hide alert alert-error">
+      </div>
+      <input type="hidden" name="Comment[photo_id]" value="{{ photo.id }}" />
+      <textarea name="Comment[content]"></textarea>
+      <button type="submit" class="btn btn-info">Комментировать</button>
+    </form>
+  </div>
+  {% endif %}
+</div>
+
+
+

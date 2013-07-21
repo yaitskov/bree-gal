@@ -1,0 +1,154 @@
+{% extends "views/layouts/main.twig" %}
+
+{% block title %}{{ model.name }}{% endblock %}
+{% if App.user.isGuest %}
+{% else %}
+{% block subjs %}
+<script type="text/javascript" src="/js/jui/js/jquery-ui.min.js"></script>
+<script type="text/javascript">
+$(document).ready(function () {
+  function hookDraggable(selector) {
+    selector.draggable({
+      revert : function(event, ui) {
+        // on older version of jQuery use "draggable"
+        // $(this).data("draggable")
+        $(this).data("draggable").originalPosition = {
+          top : 0,
+          left : 0
+        };
+
+        return !event;
+      },
+      drag: function (event, ui) {
+        $(this).data('dragged', 1);
+        return 1;
+      }
+    }).mouseup(function (e) {
+     // $(this).removeAttr('style');
+      return e;
+    }).click(
+    function (e) {
+      if ($(this).data('dragged') == 1) {
+        $(this).data('dragged', 0);
+        return;
+      }
+      e.preventDefault();
+      var iam = $(this);
+      loadPhoto(iam);
+    });
+
+  }
+
+  hookDraggable($('.view-this-photo'));
+
+  $('#trash-photo').droppable(
+  {
+    tolerance: "pointer",
+    accept: '.view-this-photo',
+    drop: function (event, ui) {
+      var link = ui.draggable;
+      $.ajax({
+        url: '/photo/delete',
+        data: { id: link.data('id') }
+      }).done(function (data) {
+        link.closest('li').remove();
+      }).fail(function (err) {
+      });
+    }
+  }
+  );
+  $('.photo-group').droppable(
+  {
+    accept: '.view-this-photo',
+    drop: function (event, ui) {
+      var link = ui.draggable;
+      var thisDiv = $(this);
+      var linkDiv = link.closest('.photo-group');
+      var thisLink = $(this).find('.view-this-photo');
+      $.ajax({
+        url: '/photo/swap',
+        data: { ida: link.data('id'), idb: thisLink.data('id') }
+      }).done(function (data) {
+        if (!data.error) {
+          thisLink.detach();
+          link.detach();
+          link.removeAttr('style');
+          thisLink.removeAttr('style');
+          thisDiv.append(link);
+          linkDiv.append(thisLink);
+          hookDraggable(link);
+          hookDraggable(thisLink);
+        } else {
+          showErrorMessage(data.error);
+        }
+      }).fail(function (err) {
+        showErrorMessage(err.responseText);
+      });
+      return 1;
+    }
+  });
+});
+</script>
+{% endblock %}
+{% endif %}
+
+{% block submenu %}
+<li>
+  <a href="/">
+    <i class="icon-list-ol"></i>Gallery List
+  </a>
+</li>
+{% if App.user.isGuest %}
+{% else %}
+<li id="trash-photo">
+  <a href="#" title="Перетащитие сюда фотографию">
+    <i class="icon-trash"></i>Удалить фото
+  </a>
+</li>
+<li>
+  <a href="/gallery/delete?id={{ model.id }}">
+    <i class="icon-minus"></i>Delete gallery
+  </a>
+</li>
+<li>
+  <a href="/gallery/upload?id={{ model.id }}">
+    <i class="icon-upload"></i>Upload file
+  </a>
+</li>
+{% endif %}
+{% endblock %}
+{% block content %}
+<h3>Галеря {{ model.name }}</h3>
+
+{% if model.photoes %}
+<ul class="thumbnails prj-galery">
+  {% for photo in model.photoes %}
+  <li class="span2" title="Кликните чтобы увеличитить">
+    <div class="photo-group thumbnail">
+      <a href="/photo/view?id={{ photo.id }}" class="view-this-photo" data-id="{{ photo.id }}">
+        <div class="photo">
+          <div>
+            <img src="{{ photo.iconUrl }}" alt="icon" />
+          </div>
+        </div>
+      </a>
+    </div>
+  </li>
+  {% endfor %}
+</ul>
+{% else %}
+<div class="alert alert-info">
+  Нет ни одной фотографии в галерее.
+</div>
+{% endif %}
+
+<div id="photo-view" class="modal hide fade"
+      tabindex="-1">
+    <div class="modal-body">
+    </div>
+  </form>
+</div>
+
+{% endblock %}
+
+

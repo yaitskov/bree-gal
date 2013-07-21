@@ -1,0 +1,88 @@
+{% macro input(model, field, type) %}
+<input type="{{ type|default('text') }}"
+       name="{{ get_class(model) }}[{{ field }}]"
+       value="{{ model[field]|e }}"
+       id="input{{ field }}"
+       placeholder="{{ model.getAttributePlaceholder(field) }}"/>
+{% endmacro %}
+
+{% macro hidden(model, field) %}
+{{ _self.input(model, field, 'hidden') }}
+{% endmacro %}
+
+{% macro errors(model) %}
+{% if model.errors %}
+<div class="control-group error">
+  <div class="controls">
+    {% for field, errors in model.errors %}
+    {% for error in errors %}
+    <div class="help-block">{{ error|t|e }}</div>
+    {% endfor %}
+    {% endfor %}
+  </div>
+</div>
+{% endif %}
+{% endmacro %}
+
+{% macro label(model, field, lbl) %}
+  <label class="control-label" for="input{{ field }}">
+    {% if lbl %}
+    {{ lbl|t }}
+    {% else %}
+    {{ model.getAttributeLabel(field) }}
+    {% endif %}
+  </label>
+{% endmacro %}
+
+{% macro css(model, field) %}
+{% if model.errors[field] %} error{% endif %}
+{% if model.isRequired(field) %} required{% endif %}
+{% endmacro %}
+
+{% macro txt(model, field, lbl) %}
+<div class="control-group{{ _self.css(model, field) }}">
+  {{ _self.label(model, field, lbl) }}
+  <div class="controls">
+    {{ _self.input(model, field) }}
+  </div>
+</div>
+{% endmacro %}
+
+{% macro area(model, field, lbl) %}
+<div class="control-group{{ _self.css(model, field) }}">
+  {{ _self.label(model, field, lbl) }}
+  <div class="controls">
+    <textarea name="{{ get_class(model) }}[{{ field }}]"
+              id="input{{ field }}"
+              placeholder="{{ model.getAttributePlaceholder(field) }}">{{ model[field] }}</textarea>
+  </div>
+</div>
+{% endmacro %}
+
+{% macro pass(model, field, lbl) %}
+<div class="control-group{{ _self.css(model, field) }}">
+  {{ _self.label(model, field, lbl) }}
+  <div class="controls">
+    {{ _self.input(model, field, 'password') }}
+  </div>
+</div>
+{% endmacro %}
+
+{% macro file(model, field, lbl) %}
+<div class="control-group{{ _self.css(model, field) }}">
+  {{ _self.label(model, field, lbl) }}
+  <div class="controls">
+    <span class="btn btn-file">
+      {{ _self.input(model, field, 'file') }}
+    </span>
+  </div>
+</div>
+{% endmacro %}
+
+{% macro submit(title) %}
+<div class="control-group">
+  <div class="controls">
+    <button type="submit" class="btn">{{ title|t }}</button>
+  </div>
+</div>
+{% endmacro %}

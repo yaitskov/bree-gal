@@ -1,0 +1,9 @@
+<div class="comment">
+  {% if App.user.isGuest %}
+  {% else %}
+  <a href="/comment/delete?id={{ comment.id }}"
+     data-hide-closest=".comment"
+     class="ajax-link pull-right">&times;</a>
+  {% endif %}
+  {{ comment.content }}
+</div>

@@ -1,0 +1,18 @@
+{% extends "views/layouts/main.twig" %}
+{% import "macro/forms.twig" as f %}
+
+{% block title %}Error{% endblock %}
+{% block content %}
+
+<h3>{{ 'Error'|t }}</h3>
+
+<div class="alert alert-error">
+  {{ message }}
+</div>
+
+{% if badModel %}
+<form>
+  {{ f.errors(badModel) }}
+</form>
+{% endif %}
+{% endblock %}
